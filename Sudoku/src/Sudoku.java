@@ -37,7 +37,7 @@ public class Sudoku extends Application {
 				if (((i == 0 || i == 1 || i == 2 || i == 6 || i == 7 || i == 8)
 						&& (j == 0 || j == 1 || j == 2 || j == 6 || j == 7 || j == 8))
 						|| ((i == 3 || i == 4 || i == 5) && (j == 3 || j == 4 || j == 5))) {
-					textFields[i][j].setStyle("-fx-border-color: orange;");
+					textFields[i][j].setStyle("-fx-border-color: pink;");
 
 				}
 			}
@@ -45,7 +45,7 @@ public class Sudoku extends Application {
 
 		Button solveButton = new Button("Solve");
 		Button clearButton = new Button("Clear");
-
+       
 		solveButton.setOnAction(e -> {
 
 			for (int i = 0; i < textFields.length; i++) {
@@ -61,6 +61,8 @@ public class Sudoku extends Application {
 					}
 				}
 			}
+		//	matrix.print();
+			
 			if(matrix.solve()) {
 
 	            for (int i = 0; i < textFields.length; i++) {
@@ -69,7 +71,7 @@ public class Sudoku extends Application {
 					
 					}
 				}
-				matrix.print();
+			//	matrix.print();
 			}
 			else {
 				Alert alert = new Alert(AlertType.INFORMATION);
