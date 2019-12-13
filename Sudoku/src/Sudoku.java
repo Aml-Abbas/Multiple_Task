@@ -13,8 +13,8 @@ import javafx.stage.Stage;
 
 public class Sudoku extends Application {
     
-	Matris matrix= new Matris();
-	TextField[][] textFields = new TextField[9][9];
+	private static Matris matrix= new Matris();
+	private static TextField[][] textFields = new TextField[9][9];
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -45,7 +45,7 @@ public class Sudoku extends Application {
 
 		Button solveButton = new Button("Solve");
 		Button clearButton = new Button("Clear");
-       
+		Button fillButton = new Button("fill");
 		solveButton.setOnAction(e -> {
 
 			for (int i = 0; i < textFields.length; i++) {
@@ -61,17 +61,12 @@ public class Sudoku extends Application {
 					}
 				}
 			}
-		//	matrix.print();
+			matrix.print();
 			
 			if(matrix.solve()) {
 
-	            for (int i = 0; i < textFields.length; i++) {
-					for (int j = 0; j < textFields.length; j++) {
-						textFields[i][j].setText(String.valueOf(matrix.get(i, j)));
-					
-					}
-				}
-			//	matrix.print();
+				showBorderPane();
+				matrix.print();
 			}
 			else {
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -83,18 +78,18 @@ public class Sudoku extends Application {
 		});
 
 		clearButton.setOnAction(e -> {
-             matrix.clear();
-         	for (int i = 0; i < textFields.length; i++) {
-				for (int j = 0; j < textFields.length; j++) {
-					textFields[i][j].setText("");
-				
-				}
-			}
-             System.out.println();
+			clearBorderPane();
+             
+		});
+		fillButton.setOnAction(e -> {
+		
+			clearBorderPane();
+            matrix.fillRandomly();
+            showBorderPane();
 		});
 
 		HBox hbox = new HBox();
-		hbox.getChildren().addAll(solveButton, clearButton);
+		hbox.getChildren().addAll(solveButton, clearButton,fillButton);
 		hbox.setAlignment(Pos.BOTTOM_CENTER);
 		hbox.setSpacing(20);
 
@@ -109,6 +104,28 @@ public class Sudoku extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public static void clearBorderPane() {
+		 matrix.clear();
+         for (int i = 0; i < textFields.length; i++) {
+				for (int j = 0; j < textFields.length; j++) {
+					textFields[i][j].setText("");
+				
+				}
+			}
+	}
+	public static void showBorderPane() {
+		 
+		   for (int i = 0; i < textFields.length; i++) {
+				for (int j = 0; j < textFields.length; j++) {
+					if(matrix.get(i, j)!=0) {
+						textFields[i][j].setText(String.valueOf(matrix.get(i, j)));
+						
+					}
+					
+				}
+			}
 	}
 
 }

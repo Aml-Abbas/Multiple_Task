@@ -1,84 +1,93 @@
+import java.util.Random;
 
 public class Matris {
 
 	private int[][] sudokuMatris;
 
-	
-	/** Skapar en matris med 9 rader och 9 kolumner*/
-	
+	/** Skapar en matris med 9 rader och 9 kolumner */
+
 	public Matris() {
 		sudokuMatris = new int[9][9];
 	}
 
 	/**
-	 
-	 *  Lägger till value till platsen rad, col i matrisen
-	 *  @param rad raden i matrisen, column kolumnen i matrisen, value värdet som sätts in*/
-	
+	 * 
+	 * Lägger till value till platsen rad, col i matrisen
+	 * 
+	 * @param rad raden i matrisen, column kolumnen i matrisen, value värdet som
+	 *            sätts in
+	 */
+
 	public void add(int rad, int column, int value) {
 
 		sudokuMatris[rad][column] = value;
 	}
-	
+
 	/**
 	 * returnerar värdet som finns i platsen rad,col
+	 * 
 	 * @return returnerar värdet i platsen rad,col
-	 * @param rad raden i matrisen, column Kolumnen i matrisen*/
+	 * @param rad raden i matrisen, column Kolumnen i matrisen
+	 */
 
 	public int get(int rad, int column) {
 
 		return sudokuMatris[rad][column];
 	}
-	
-	
+
 	/**
 	 * returnerar true ifall lösningen hittas annars false
-	 *@return true eller false om det finns någon lösning */
+	 * 
+	 * @return true eller false om det finns någon lösning
+	 */
 
 	public boolean solve() {
-		if(controlUser()) {
-			return solve(0,0);
+		if (controlUser()) {
+			return solve(0, 0);
 		}
-	return false;
-	}
-	
-	
-	/** returnera true när en lösning hittas annars false
-	 * @param rad raden i matrisen, col kolumn i matrisen
-	 * @return true eller false om lösningen hittas
-	 * */
-	private boolean solve(int rad, int col) {
-			
-			if(col==9) {
-				col=0;
-				rad++;
-			
-			if(rad==9) {
-				return true;
-			}
-			}
-			if(sudokuMatris[rad][col]!=0) {
-				return solve(rad,col+1);
-			}
-			for(int value = 1; value <= 9; value++) {
-				if(control(rad,col,value)) {
-					sudokuMatris[rad][col]=value;
-					if(solve(rad,col+1)) {
-						return true;
-					}
-					sudokuMatris[rad][col]=0;
-				}
-			}	
-
-		
 		return false;
 	}
-	
+
 	/**
-	 * Kontrollera ifall det är okej att lägga till ett visst värde 
-	 * @param rad raden i matrisen, col kolumnen i matrisen, value värdet som sätts in
-	 * @return returnera false om value finns redan i samma rad eller kolumn eller region
-	 * */
+	 * returnera true när en lösning hittas annars false
+	 * 
+	 * @param rad raden i matrisen, col kolumn i matrisen
+	 * @return true eller false om lösningen hittas
+	 */
+	private boolean solve(int rad, int col) {
+
+		if (col == 9) {
+			col = 0;
+			rad++;
+
+			if (rad == 9) {
+				return true;
+			}
+		}
+		if (sudokuMatris[rad][col] != 0) {
+			return solve(rad, col + 1);
+		}
+		for (int value = 1; value <= 9; value++) {
+			if (control(rad, col, value)) {
+				sudokuMatris[rad][col] = value;
+				if (solve(rad, col + 1)) {
+					return true;
+				}
+				sudokuMatris[rad][col] = 0;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Kontrollera ifall det är okej att lägga till ett visst värde
+	 * 
+	 * @param rad raden i matrisen, col kolumnen i matrisen, value värdet som sätts
+	 *            in
+	 * @return returnera false om value finns redan i samma rad eller kolumn eller
+	 *         region
+	 */
 
 	public boolean control(int rad, int col, int value) {
 
@@ -108,35 +117,34 @@ public class Matris {
 		}
 		return true;
 	}
-	
+
 	/**
-	 * kontrollera att användaren har inte skrivit några tal som inte stämmer med reglerna 
-	 * */
+	 * kontrollera att användaren har inte skrivit några tal som inte stämmer med
+	 * reglerna
+	 */
 	public boolean controlUser() {
-		
+
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
+
+				if (sudokuMatris[i][j] != 0) {
 				
-				if(sudokuMatris[i][j]!=0) {
-					System.out.print(sudokuMatris[i][j]);
-					int value= sudokuMatris[i][j];
-					sudokuMatris[i][j]=0;
-					if(!control(i,j,value)) {
+					int value = sudokuMatris[i][j];
+					sudokuMatris[i][j] = 0;
+					if (!control(i, j, value)) {
 						return false;
 					}
-					sudokuMatris[i][j]=value;
+					sudokuMatris[i][j] = value;
 				}
 			}
 		}
-	
-				return true;
+
+		return true;
 	}
 
-	
-	
 	/**
-	 * tommar matrisen 
-	 * */
+	 * tommar matrisen
+	 */
 
 	public void clear() {
 		for (int i = 0; i < 9; i++) {
@@ -145,8 +153,8 @@ public class Matris {
 			}
 		}
 	}
-	
-	/**Skriver ut matrisen*/
+
+	/** Skriver ut matrisen */
 
 	public void print() {
 		for (int i = 0; i < 9; i++) {
@@ -155,5 +163,18 @@ public class Matris {
 				System.out.print(" " + sudokuMatris[i][j]);
 			}
 		}
+		System.out.println();
+	}
+
+	public void fillRandomly() {
+		clear();
+		for (int i = 0; i < 10; i++) {
+			Random random = new Random();
+			int positionX = random.nextInt(8);
+			int positionY = random.nextInt(8);
+			int element = random.nextInt(8);
+			this.sudokuMatris[positionX][positionY] = element;
+		}
+
 	}
 }
