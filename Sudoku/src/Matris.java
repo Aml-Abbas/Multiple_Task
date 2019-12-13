@@ -168,11 +168,12 @@ public class Matris {
 
 	public void fillRandomly() {
 		clear();
+		Random random = new Random();
 		for (int i = 0; i < 10; i++) {
-			Random random = new Random();
-			int positionX = random.nextInt(8);
-			int positionY = random.nextInt(8);
-			int element = random.nextInt(8);
+			
+			int positionX = random.nextInt(9);
+			int positionY = random.nextInt(9);
+			int element = 1+random.nextInt(9);
 			this.sudokuMatris[positionX][positionY] = element;
 		}
 
