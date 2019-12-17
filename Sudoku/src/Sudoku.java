@@ -107,7 +107,7 @@ public class Sudoku extends Application {
 	}
 	
 	/**
-	 * ta bort alla element som finns i matris och visa matrisen igen på fönstret 
+	 * ta bort alla element som finns i matris och visa matrisen igen på fönstret.
 	 */
 	public static void clearBorderPane() {
 		 matrix.clear();
@@ -120,7 +120,7 @@ public class Sudoku extends Application {
 	}
 	
 	/**
-	 * visa det som finns i matris på fönstret 
+	 * visa det som finns i matris på fönstret.
 	 */
 	
 	public static void showBorderPane() {

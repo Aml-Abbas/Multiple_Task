@@ -4,18 +4,18 @@ public class Matris {
 
 	private int[][] sudokuMatris;
 
-	/** Skapar en matris med 9 rader och 9 kolumner */
+	/** Skapar en matris med 9 rader och 9 kolumner.
+	 */
 
 	public Matris() {
 		sudokuMatris = new int[9][9];
 	}
 
 	/**
-	 * 
-	 * Lägger till value till platsen rad, col i matrisen
+	 * Lägger till value till platsen rad, col i matrisen.
 	 * 
 	 * @param rad raden i matrisen, column kolumnen i matrisen, value värdet som
-	 *            sätts in
+	 * sätts in
 	 */
 
 	public void add(int rad, int column, int value) {
@@ -24,7 +24,7 @@ public class Matris {
 	}
 
 	/**
-	 * returnerar värdet som finns i platsen rad,col
+	 * returnerar värdet som finns i platsen rad,col.
 	 * 
 	 * @return returnerar värdet i platsen rad,col
 	 * @param rad raden i matrisen, column Kolumnen i matrisen
@@ -36,7 +36,7 @@ public class Matris {
 	}
 
 	/**
-	 * returnerar true ifall lösningen hittas annars false
+	 * returnerar true ifall lösningen hittas annars false.
 	 * 
 	 * @return true eller false om det finns någon lösning
 	 */
@@ -49,7 +49,7 @@ public class Matris {
 	}
 
 	/**
-	 * returnera true när en lösning hittas annars false
+	 * returnera true när en lösning hittas annars false.
 	 * 
 	 * @param rad raden i matrisen, col kolumn i matrisen
 	 * @return true eller false om lösningen hittas
@@ -81,7 +81,7 @@ public class Matris {
 	}
 
 	/**
-	 * Kontrollera ifall det är okej att lägga till ett visst värde
+	 * Kontrollera ifall det är okej att lägga till ett visst värde.
 	 * 
 	 * @param rad raden i matrisen, col kolumnen i matrisen, value värdet som sätts
 	 *            in
@@ -120,7 +120,7 @@ public class Matris {
 
 	/**
 	 * kontrollera att användaren har inte skrivit några tal som inte stämmer med
-	 * reglerna
+	 * reglerna.
 	 */
 	public boolean controlUser() {
 
@@ -143,7 +143,7 @@ public class Matris {
 	}
 
 	/**
-	 * tommar matrisen
+	 * tommar matrisen.
 	 */
 
 	public void clear() {
@@ -154,7 +154,7 @@ public class Matris {
 		}
 	}
 
-	/** Skriver ut matrisen */
+	/** Skriver ut matrisen. */
 
 	public void print() {
 		for (int i = 0; i < 9; i++) {
@@ -166,6 +166,9 @@ public class Matris {
 		System.out.println();
 	}
 
+
+	/** lägga till tio slumpmässiga tal i slumpmässiga platser i matrisen. */
+	
 	public void fillRandomly() {
 		clear();
 		Random random = new Random();
