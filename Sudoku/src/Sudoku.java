@@ -106,6 +106,9 @@ public class Sudoku extends Application {
 		launch(args);
 	}
 	
+	/**
+	 * ta bort alla element som finns i matris och visa matrisen igen på fönstret 
+	 */
 	public static void clearBorderPane() {
 		 matrix.clear();
          for (int i = 0; i < textFields.length; i++) {
@@ -115,6 +118,11 @@ public class Sudoku extends Application {
 				}
 			}
 	}
+	
+	/**
+	 * visa det som finns i matris på fönstret 
+	 */
+	
 	public static void showBorderPane() {
 		 
 		   for (int i = 0; i < textFields.length; i++) {
